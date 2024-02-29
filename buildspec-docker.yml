@@ -9,5 +9,5 @@ phases:
     commands:
       - echo Build started on `date`
       - echo Building the Docker image...
-      - docker build -t 992382809252.dkr.ecr.us-east-1.amazonaws.com/nextflow:$CODEBUILD_BUILD_NUMBER .
-      - docker push 992382809252.dkr.ecr.us-east-1.amazonaws.com/nextflow:$CODEBUILD_BUILD_NUMBER
+      - docker build -t 992382809252.dkr.ecr.us-east-1.amazonaws.com/nextflow:1 .
+      - docker push 992382809252.dkr.ecr.us-east-1.amazonaws.com/nextflow:1
