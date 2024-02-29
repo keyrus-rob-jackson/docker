@@ -2,6 +2,7 @@
 ARG VERSION=latest
 FROM nextflow/nextflow:${VERSION} AS build
 
+
 FROM amazonlinux:2 AS final
 COPY --from=build /usr/local/bin/nextflow /usr/bin/nextflow
 
