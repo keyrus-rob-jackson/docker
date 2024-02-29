@@ -9,5 +9,5 @@ phases:
     commands:
       - echo Build started on `date`
       - echo Building the Docker image...
-      - docker build -t $:$CODEBUILD_RESOLVED_SOURCE_VERSION .
+      - docker build -t 992382809252.dkr.ecr.us-east-1.amazonaws.com/nextflow:$CODEBUILD_RESOLVED_SOURCE_VERSION .
       - docker push $ECR_REPO_URI:$CODEBUILD_RESOLVED_SOURCE_VERSION
