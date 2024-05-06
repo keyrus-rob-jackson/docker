@@ -10,7 +10,8 @@ jobs:
   build:
     name: Build Docker Image - ${{ vars.AWS_REGION }}
     runs-on: ubuntu-latest
-    
+    environment: 'prod'     
+ 
     steps:
     - name: Checkout Repository
       uses: actions/checkout@v2
