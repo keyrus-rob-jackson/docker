@@ -33,10 +33,10 @@ jobs:
       run: docker build -t ${{ vars.REPO_NAME }} .
       
     - name: Tag Docker Image
-      run: docker tag ${{ vars.REPO_NAME }}:latest ${{ vars.AWS_ACCOUNT_ID }}.dkr.ecr.${{ vars.AWS_REGION }}.amazonaws.com/${{ vars.REPO_NAME }}:latest
+      run: docker tag ${{ vars.REPO_NAME }}:latest public.ecr.aws/openscpca/${{ vars.REPO_NAME }}:latest
 
     - name: Check account
       run: aws sts get-caller-identity
       
     - name: Push Docker Image to ECR
-      run: docker push ${{ vars.AWS_ACCOUNT_ID }}.dkr.ecr.${{ vars.AWS_REGION }}.amazonaws.com/${{ vars.REPO_NAME }}:latest
+      run: docker push public.ecr.aws/openscpca/${{ vars.REPO_NAME }}:latest
