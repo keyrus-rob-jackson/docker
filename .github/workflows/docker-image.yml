@@ -35,9 +35,12 @@ jobs:
       
     - name: Tag Docker Image
       run: docker tag ${{ vars.REPO_NAME }}:latest public.ecr.aws/openscpca/${{ vars.REPO_NAME }}:${{ github.run_number }}
-
-    - name: Check account
-      run: aws sts get-caller-identity
       
     - name: Push Docker Image to ECR
       run: docker push public.ecr.aws/openscpca/${{ vars.REPO_NAME }}:${{ github.run_number }}
+      
+    - name: Tag Docker Image to Latest
+      run: docker tag ${{ vars.REPO_NAME }}:latest public.ecr.aws/openscpca/${{ vars.REPO_NAME }}:latest
+      
+    - name: Push Docker Image to ECR
+      run: docker push public.ecr.aws/openscpca/${{ vars.REPO_NAME }}:latest
