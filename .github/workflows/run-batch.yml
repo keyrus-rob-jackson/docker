@@ -30,7 +30,7 @@ jobs:
       working-directory: ${{ github.workspace }}
  
     - name: Copy zip to S3
-      run: aws s3 cp repository.zip s3://pipeline-artifact-992382809252-us-east-2/
+      run: aws s3 cp source.zip s3://pipeline-artifact-992382809252-us-east-2/
       env:
         AWS_DEFAULT_REGION: us-east-2
    
