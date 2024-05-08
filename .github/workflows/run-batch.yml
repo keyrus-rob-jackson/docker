@@ -1,10 +1,8 @@
 name: Batch CodeDeploy CI
 
 on:
-  push:
-    paths:
-      - 'Dockerfile'
   workflow_dispatch:
+
 permissions:
       id-token: write   # This is required for requesting the JWT
       contents: read    # This is required for actions/checkout
@@ -16,15 +14,15 @@ jobs:
     environment: 'prod'     
  
     steps:
-    - name: Checkout Repository
-      uses: actions/checkout@v2
+      - name: Checkout Repository
+        uses: actions/checkout@v2
       
-    - name: Configure AWS Credentials
-      uses: aws-actions/configure-aws-credentials@v1
-      with:
-        role-to-assume: arn:aws:iam::992382809252:role/GithubOpenId
-        role-session-name: githubActionSession
-        aws-region: us-east-1
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          role-to-assume: arn:aws:iam::992382809252:role/GithubOpenId
+          role-session-name: githubActionSession
+          aws-region: us-east-1
 
       - name: Create zip archive
         run: |
