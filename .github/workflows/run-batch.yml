@@ -40,7 +40,8 @@ jobs:
         aws deploy create-deployment \
           --application-name Batch \
           --deployment-group-name Batch-deployment-group \
-          --s3-location bucket=pipeline-artifact-992382809252-us-east-2,key=source.zip,bundleType=zip
+          --s3-location bucket=pipeline-artifact-992382809252-us-east-2,key=source.zip,bundleType=zip \
+          --region us-east-2
       env:
         AWS_DEFAULT_REGION: us-east-2
       
