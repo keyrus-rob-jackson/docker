@@ -33,10 +33,14 @@ jobs:
       run: aws s3 cp source.zip s3://pipeline-artifact-992382809252-us-east-2/
       env:
         AWS_DEFAULT_REGION: us-east-2
-   
+
+
+    - name: Trigger AWS CodeDeploy deployment
+      run: |
+        aws deploy create-deployment \
+          --application-name Batch \
+          --deployment-group-name Batch-deployment-group \
+          --s3-location bucket=pipeline-artifact-992382809252-us-east-2,key=source.zip,bundleType=zip
+      env:
+        AWS_DEFAULT_REGION: us-east-2
       
-    - name: Tag Docker Image to Latest
-      run: docker tag ${{ vars.REPO_NAME }}:latest public.ecr.aws/openscpca/${{ vars.REPO_NAME }}:latest
-      
-    - name: Push Docker Image to ECR
-      run: docker push public.ecr.aws/openscpca/${{ vars.REPO_NAME }}:latest
