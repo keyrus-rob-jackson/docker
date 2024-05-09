@@ -1,34 +1,36 @@
 name: Batch CodeDeploy CI
 
 on:
+  push:
+    tags: [ v*.*.* ]
   workflow_dispatch:
 
 permissions:
-      id-token: write   # This is required for requesting the JWT
-      contents: read    # This is required for actions/checkout
+  id-token: write # This is required for requesting the JWT
+  contents: read # This is required for actions/checkout
 
 jobs:
   build:
     name: Run Code Deploy Job
     runs-on: ubuntu-latest
-    environment: 'prod'     
- 
+    environment: "prod"
+
     steps:
     - name: Checkout Repository
       uses: actions/checkout@v2
-    
+
     - name: Configure AWS Credentials
       uses: aws-actions/configure-aws-credentials@v1
       with:
-        role-to-assume: arn:aws:iam::992382809252:role/GithubOpenId
+        role-to-assume: arn:aws:iam::992382809252:role/GithubOpenId-nextflow
         role-session-name: githubActionSession
         aws-region: us-east-1
- 
+
     - name: Create zip archive
       run: |
         zip -r  source.zip  . -x '*. git*'
       working-directory: ${{ github.workspace }}
- 
+
     - name: Copy zip to S3
       run: aws s3 cp source.zip s3://pipeline-artifact-992382809252-us-east-2/
       env:
@@ -44,4 +46,3 @@ jobs:
           --region us-east-2
       env:
         AWS_DEFAULT_REGION: us-east-2
-      
