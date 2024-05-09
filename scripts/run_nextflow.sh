@@ -1,3 +1,4 @@
+#!/bin/bash
 cd /opt/nextflow
 MYPATH=`pwd`
 echo $MYAPTH >/tmp/mypath
